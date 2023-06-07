@@ -1,0 +1,15 @@
+{% extends "blogs/base.html" %}
+
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Blog Host.</h1>
+
+        <p class="lead">Create your own blog, and share it with the world.</p>
+
+        {% if not user.is_authenticated %}
+            <a class="btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+        {% else %}
+            <a class="btn-lg btn-primary" href="{% url 'blogs:blogs' %}" role="button">Create a new blog &raquo;</a>
+        {% endif %}
+    </div>
+{% endblock page_header %}

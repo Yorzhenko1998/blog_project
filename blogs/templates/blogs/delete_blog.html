@@ -1,0 +1,20 @@
+{% extends "blogs/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Delete blog</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+  <p>Are you sure you want to delete the blog "{{ blog }}"?</p>
+
+  <form action="{% url 'blogs:delete_blog' blog.id %}" method="post">
+      {% csrf_token %}
+      <div class="btn-group">
+          <input type="submit" value="Delete" class="btn btn-danger mr-2">
+          <input type="button" value="Cancel" class="btn btn-info" onclick="window.location.href='{% url 'blogs:blogs' %}'">
+      </div>
+  </form>
+
+{% endblock content %}
