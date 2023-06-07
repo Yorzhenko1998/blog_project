@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
@@ -20,7 +20,7 @@ def blogs(request):
 @login_required
 def blog(request, blog_id):
     """Page to view an individual blog, and all its posts."""
-    blog = Blog.objects.get(id=blog_id)
+    blog = get_object_or_404(id=blog_id)
     # Make sure the topic belongs to the current user.
     check_blog_owner(blog, request.user)
     posts = blog.blogpost_set.all()
